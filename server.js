@@ -4,6 +4,8 @@ const cors = require("cors");
 const SpotifyWebApi = require("spotify-web-api-node");
 const lyricsFinder = require("lyrics-finder");
 
+const PORT = process.env.PORT || 3001;
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -62,4 +64,4 @@ app.get("/lyrics", async (req, res) => {
   res.json({ lyrics });
 });
 
-app.listen(3001);
+app.listen(PORT);
