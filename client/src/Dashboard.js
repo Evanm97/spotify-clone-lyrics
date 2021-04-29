@@ -8,7 +8,7 @@ import axios from "axios";
 import GitHubCorners from "@uiw/react-github-corners";
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: "bf628795576b4bad9b71cde40e4aae48",
+  clientId: process.env.CLIENT_ID,
 });
 
 export default function Dashboard({ code }) {
@@ -28,7 +28,7 @@ export default function Dashboard({ code }) {
     if (!playingTrack) return;
 
     axios
-      .get("/lyrics", {
+      .get("http://localhost:3001/lyrics", {
         params: {
           track: playingTrack.title,
           artist: playingTrack.artist,
