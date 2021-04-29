@@ -66,11 +66,13 @@ app.get("/lyrics", async (req, res) => {
 
 // app.use(express.static("public"));
 
-app.use('/static', express.static(path.join(__dirname, 'public')));
+// app.use('/static', express.static(path.join(__dirname, 'public')));
 
 // app.get('*', (req, res) => {
 //   res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 // });
+
+app.use(express.static(__dirname + '/public/build'));
 
 const PORT = process.env.PORT || 3001;
 
