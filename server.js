@@ -64,15 +64,18 @@ app.get("/lyrics", async (req, res) => {
   res.json({ lyrics });
 });
 
-// app.use(express.static("public"));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(__dirname + "/client/build"));
+  app.get("*", function(req, res) {
+    res.sendFile(path.join(__dirname + "/client/build/index.html"));
+  });
+}
 
-// app.use('/static', express.static(path.join(__dirname, 'public')));
+// app.use(express.static(__dirname + '/client/build'));
 
 // app.get('*', (req, res) => {
 //   res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 // });
-
-app.use(express.static(__dirname + '/client/build'));
 
 const PORT = process.env.PORT || 3001;
 
