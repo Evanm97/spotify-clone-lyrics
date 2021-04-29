@@ -4,7 +4,7 @@ const cors = require("cors");
 const SpotifyWebApi = require("spotify-web-api-node");
 const lyricsFinder = require("lyrics-finder");
 
-const PORT = process.env.PORT || 3001;
+const path = require("path");
 
 const app = express();
 app.use(cors());
@@ -63,5 +63,13 @@ app.get("/lyrics", async (req, res) => {
     "No Lyrics Found";
   res.json({ lyrics });
 });
+
+app.use(express.static("public"));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+});
+
+const PORT = process.env.PORT || 3001;
 
 app.listen(PORT);
