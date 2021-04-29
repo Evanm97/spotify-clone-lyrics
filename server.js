@@ -64,18 +64,14 @@ app.get("/lyrics", async (req, res) => {
   res.json({ lyrics });
 });
 
-// app.use('/static', express.static(path.join(__dirname, 'public')));
+// This middleware informs the express application to serve our compiled React files
+if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
+  app.use(express.static(path.join(__dirname, 'client/build')));
 
-// app.use(express.static(__dirname + '/client/build'));
-
-if (process.env.NODE_ENV === 'production') {
-  
-  app.use(express.static(path.resolve(__dirname, 'build')));
-
-  app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  app.get('*', function (req, res) {
+      res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
-}
+};
 
 const PORT = process.env.PORT || 3001;
 
