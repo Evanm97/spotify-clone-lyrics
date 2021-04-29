@@ -72,7 +72,7 @@ app.get("/lyrics", async (req, res) => {
 //   res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
 // });
 
-app.use(express.static(__dirname + '/public/build'));
+app.use(express.static(__dirname + '/client/build'));
 
 const PORT = process.env.PORT || 3001;
 
