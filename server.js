@@ -68,7 +68,7 @@ app.get("/lyrics", async (req, res) => {
 
 // app.use('/static', express.static(path.join(__dirname, 'public')));
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/client/build'));
 
 const PORT = process.env.PORT || 3001;
 
