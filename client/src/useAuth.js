@@ -1,6 +1,14 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+let BASE_URL = "";
+
+if (process.env.NODE_ENV === 'production') {
+  BASE_URL = window.location.origin;
+} else {
+  BASE_URL = "http://localhost:3001";
+}
+
 export default function useAuth(code) {
   const [accessToken, setAccessToken] = useState();
   const [refreshToken, setRefreshToken] = useState();
@@ -8,7 +16,7 @@ export default function useAuth(code) {
 
   useEffect(() => {
     axios
-      .post("/login", {
+      .post(`${BASE_URL}/login`, {
         code,
       })
       .then((res) => {
@@ -26,7 +34,7 @@ export default function useAuth(code) {
     if (!refreshToken || !expiresIn) return;
     const interval = setInterval(() => {
       axios
-        .post("/refresh", {
+        .post(`${BASE_URL}/refresh`, {
           refreshToken,
         })
         .then((res) => {
