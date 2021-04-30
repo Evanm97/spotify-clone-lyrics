@@ -12,9 +12,6 @@ const spotifyApi = new SpotifyWebApi({
   clientId: "bf628795576b4bad9b71cde40e4aae48",
 });
 
-const base = window.location.origin;
-console.log("Base Url : ", base);
-
 export default function Dashboard({ code }) {
   const accessToken = useAuth(code);
   const [search, setSearch] = useState("");
@@ -32,7 +29,7 @@ export default function Dashboard({ code }) {
     if (!playingTrack) return;
 
     axios
-      .get(`http://localhost:3001/lyrics`, {
+      .get("http://localhost:3001/lyrics", {
         params: {
           track: playingTrack.title,
           artist: playingTrack.artist,
