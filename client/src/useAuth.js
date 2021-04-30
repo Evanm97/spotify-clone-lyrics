@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-let BASE_URL = "";
+const BASE_URL = "http://localhost:3001";
 
-if (process.env.NODE_ENV === 'production') {
-  BASE_URL = window.location.origin;
-} else {
-  BASE_URL = "http://localhost:3001";
-}
+// if (process.env.NODE_ENV === 'production') {
+//   BASE_URL = window.location.origin;
+// } else {
+//   BASE_URL = "http://localhost:3001";
+// }
 
 export default function useAuth(code) {
   const [accessToken, setAccessToken] = useState();
